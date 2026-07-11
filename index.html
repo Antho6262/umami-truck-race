@@ -9,7 +9,7 @@
 <style>
   :root{
     --black:#0a0808;
-    --charcoal:#161212;
+    --charcoal:#1c0d0e;
     --red:#c21f2b;
     --red-deep:#7a1319;
     --gold:#d4a84b;
@@ -19,7 +19,9 @@
   *{box-sizing:border-box; margin:0; padding:0;}
   html{scroll-behavior:smooth;}
   body{
-    background:var(--black);
+    background:
+      radial-gradient(ellipse at 50% 0%, rgba(194,31,43,0.14), transparent 60%),
+      var(--black);
     color:var(--cream);
     font-family:'Noto Sans JP', sans-serif;
     line-height:1.6;
@@ -47,7 +49,7 @@
   header{
     position:sticky; top:0; z-index:50;
     background:rgba(10,8,8,0.92);
-    border-bottom:1px solid rgba(212,168,75,0.25);
+    border-bottom:1px solid rgba(194,31,43,0.4);
     backdrop-filter:blur(6px);
   }
   nav{display:flex; align-items:center; justify-content:space-between; padding:14px 24px;}
@@ -83,14 +85,14 @@
   .eyebrow{color:var(--red); font-size:13px; letter-spacing:0.18em; font-weight:700; margin-bottom:10px;}
   .section-title{font-size:34px; margin-bottom:14px;}
   .rule{
-    width:64px; height:3px; background:var(--gold); margin:18px 0 36px;
+    width:64px; height:3px; background:var(--red); margin:18px 0 36px;
   }
 
   /* two events */
   .events{display:grid; grid-template-columns:1fr 1fr; gap:24px;}
   .card{
     background:var(--charcoal);
-    border:1px solid rgba(212,168,75,0.18);
+    border:1px solid rgba(194,31,43,0.35);
     border-radius:4px;
     padding:30px;
   }
@@ -105,8 +107,8 @@
   /* infos pratiques */
   .infos{
     background:var(--charcoal);
-    border-top:1px solid rgba(212,168,75,0.18);
-    border-bottom:1px solid rgba(212,168,75,0.18);
+    border-top:1px solid rgba(194,31,43,0.35);
+    border-bottom:1px solid rgba(194,31,43,0.35);
   }
   .infos-grid{
     display:grid; grid-template-columns:repeat(4,1fr); gap:24px; text-align:center;
@@ -120,7 +122,7 @@
 
   footer{
     padding:40px 24px; text-align:center;
-    border-top:1px solid rgba(212,168,75,0.18);
+    border-top:1px solid rgba(194,31,43,0.35);
   }
   footer .brand{justify-content:center; margin-bottom:10px;}
   footer p{color:var(--gray); font-size:13px;}

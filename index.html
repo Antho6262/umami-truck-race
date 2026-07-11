@@ -23,6 +23,16 @@
     color:var(--cream);
     font-family:'Noto Sans JP', sans-serif;
     line-height:1.6;
+    position:relative;
+  }
+  body::before{
+    content:"";
+    position:fixed; inset:0;
+    background:url('assets/logo.png') center center no-repeat;
+    background-size:min(60vw, 640px);
+    opacity:0.05;
+    z-index:-1;
+    pointer-events:none;
   }
   h1,h2,h3{
     font-family:'Anton', sans-serif;
@@ -202,6 +212,7 @@
     <p><strong>Lieu :</strong> Aéroport de Sandy Shore</p>
     <p><strong>Organisateur :</strong> Umami Restaurant</p>
     <p><strong>Format :</strong> Course de camion 250kg inter-entreprise & concours de livery</p>
+    <p><strong>Restaurant Umami — Organisateur</strong></p>
   </div>
 </section>
 

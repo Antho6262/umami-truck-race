@@ -113,6 +113,7 @@
   .infos-grid{
     display:grid; grid-template-columns:repeat(4,1fr); gap:24px; text-align:center;
   }
+  .infos-grid-3{grid-template-columns:repeat(3,1fr);}
   .infos-grid div{padding:10px;}
   .infos-grid h4{font-family:'Anton'; font-size:16px; color:var(--gold); margin-bottom:6px; letter-spacing:0.04em;}
   .infos-grid p{color:var(--gray); font-size:14px;}
@@ -131,7 +132,35 @@
     .events{grid-template-columns:1fr;}
     .infos-grid{grid-template-columns:1fr 1fr;}
     .navlinks{display:none;}
+    .form-row{grid-template-columns:1fr;}
   }
+
+  /* form */
+  .form{display:flex; flex-direction:column; gap:20px; max-width:640px;}
+  .form label{display:flex; flex-direction:column; gap:6px; font-size:13px; color:var(--gray); letter-spacing:0.02em;}
+  .form-row{display:grid; grid-template-columns:1fr 1fr; gap:20px;}
+  .form input, .form textarea{
+    background:var(--charcoal);
+    border:1px solid rgba(194,31,43,0.4);
+    color:var(--cream);
+    padding:11px 12px;
+    border-radius:2px;
+    font-family:'Noto Sans JP', sans-serif;
+    font-size:14px;
+  }
+  .form input:focus, .form textarea:focus{
+    outline:2px solid var(--gold); outline-offset:1px;
+  }
+  .form fieldset{
+    border:1px solid rgba(194,31,43,0.4);
+    border-radius:2px;
+    padding:16px;
+  }
+  .form legend{color:var(--gold); font-size:13px; letter-spacing:0.05em; padding:0 6px;}
+  .radio-row{display:flex; gap:24px;}
+  .radio{flex-direction:row; align-items:center; gap:8px; color:var(--cream); font-size:14px;}
+  #montant-wrap{margin-top:14px; max-width:200px;}
+  .form button{align-self:flex-start; cursor:pointer;}
 </style>
 </head>
 <body>
@@ -146,6 +175,7 @@
       <a href="#evenement">L'évènement</a>
       <a href="#infos">Infos pratiques</a>
       <a href="#lieu">Lieu</a>
+      <a href="#inscription">Inscription</a>
     </div>
   </nav>
 </header>
@@ -185,14 +215,10 @@
     <div class="eyebrow">Au programme</div>
     <h2 class="section-title">Ce qui vous attend</h2>
     <div class="rule"></div>
-    <div class="infos-grid">
+    <div class="infos-grid infos-grid-3">
       <div>
         <h4>Courses intenses</h4>
         <p>Manches chronométrées sur circuit fermé</p>
-      </div>
-      <div>
-        <h4>Livraisons stratégiques</h4>
-        <p>Épreuves de précision et de rapidité</p>
       </div>
       <div>
         <h4>Lots exclusifs</h4>
@@ -218,6 +244,61 @@
   </div>
 </section>
 
+<section id="inscription">
+  <div class="wrap">
+    <div class="eyebrow">Participer</div>
+    <h2 class="section-title">Inscription entreprise</h2>
+    <div class="rule"></div>
+    <form class="form" id="inscription-form" action="https://formspree.io/f/mzdjgagk" method="POST">
+      <label>Nom de l'entreprise
+        <input type="text" name="entreprise" required>
+      </label>
+
+      <div class="form-row">
+        <label>Pilote 1
+          <input type="text" name="pilote1" required>
+        </label>
+        <label>Pilote 2
+          <input type="text" name="pilote2" required>
+        </label>
+      </div>
+      <div class="form-row">
+        <label>Pilote 3
+          <input type="text" name="pilote3" required>
+        </label>
+        <label>Pilote remplaçant
+          <input type="text" name="pilote4">
+        </label>
+      </div>
+
+      <fieldset>
+        <legend>Participation financière</legend>
+        <div class="radio-row">
+          <label class="radio"><input type="radio" name="participation_financiere" value="oui"> Oui</label>
+          <label class="radio"><input type="radio" name="participation_financiere" value="non" checked> Non</label>
+        </div>
+        <label id="montant-wrap" style="display:none">Montant (€)
+          <input type="number" name="montant" min="0" step="1">
+        </label>
+      </fieldset>
+
+      <fieldset>
+        <legend>Participation aux lots</legend>
+        <div class="radio-row">
+          <label class="radio"><input type="radio" name="participation_lots" value="oui"> Oui</label>
+          <label class="radio"><input type="radio" name="participation_lots" value="non" checked> Non</label>
+        </div>
+      </fieldset>
+
+      <label>RIB de l'entreprise
+        <textarea name="rib" rows="3" required></textarea>
+      </label>
+
+      <button type="submit" class="btn">Envoyer l'inscription</button>
+    </form>
+  </div>
+</section>
+
 <footer>
   <div class="brand">
     <img src="assets/logo.png" alt="Umami Restaurant">
@@ -225,6 +306,14 @@
   </div>
   <p>Truck Race & Delivery Contest — 2ème édition</p>
 </footer>
+
+<script>
+  const radios = document.querySelectorAll('input[name="participation_financiere"]');
+  const montantWrap = document.getElementById('montant-wrap');
+  radios.forEach(r => r.addEventListener('change', () => {
+    montantWrap.style.display = document.querySelector('input[name="participation_financiere"]:checked').value === 'oui' ? 'flex' : 'none';
+  }));
+</script>
 
 </body>
 </html>
